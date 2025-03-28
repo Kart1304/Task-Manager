@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-tasks"></i> Task Manager</h1>
+            <div class="theme-toggle">
+                <i class="fas fa-sun"></i>
+                <label class="switch">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider round"></span>
+                </label>
+                <i class="fas fa-moon"></i>
+            </div>
+        </header>
+        
+        <main>
+            <div class="task-form">
+                <div class="form-group">
+                    <input type="text" id="task-input" placeholder="Add a new task...">
+                    <select id="task-priority">
+                        <option value="low">Low Priority</option>
+                        <option value="medium" selected>Medium Priority</option>
+                        <option value="high">High Priority</option>
+                    </select>
+                    <button id="add-task-btn" class="btn primary-btn">
+                        <i class="fas fa-plus"></i> Add Task
+                    </button>
+                </div>
+                <div class="form-group">
+                    <input type="date" id="task-due-date">
+                    <input type="text" id="task-category" placeholder="Category (optional)">
+                </div>
+            </div>
+            
+            <div class="task-filters">
+                <div class="filter-group">
+                    <label for="filter-status">Status:</label>
+                    <select id="filter-status">
+                        <option value="all" selected>All</option>
+                        <option value="active">Active</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-priority">Priority:</label>
+                    <select id="filter-priority">
+                        <option value="all" selected>All</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-category">Category:</label>
+                    <select id="filter-category">
+                        <option value="all" selected>All</option>
+                        <!-- Categories will be added dynamically -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sort-by">Sort By:</label>
+                    <select id="sort-by">
+                        <option value="date-added-desc" selected>Date Added (Newest)</option>
+                        <option value="date-added-asc">Date Added (Oldest)</option>
+                        <option value="due-date-asc">Due Date (Soonest)</option>
+                        <option value="priority-desc">Priority (Highest)</option>
+                        <option value="priority-asc">Priority (Lowest)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="task-stats">
+                <div class="stat">
+                    <span id="total-tasks">0</span>
+                    <label>Total</label>
+                </div>
+                <div class="stat">
+                    <span id="active-tasks">0</span>
+                    <label>Active</label>
+                </div>
+                <div class="stat">
+                    <span id="completed-tasks">0</span>
+                    <label>Completed</label>
+                </div>
+            </div>
+            
+            <div class="task-list-container">
+                <div id="task-list" class="task-list">
+                    <!-- Tasks will be added here -->
+                    <div id="no-tasks-message" class="no-tasks-message">
+                        <i class="fas fa-clipboard-list"></i>
+                        <p>No tasks to display. Add a task to get started!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="task-actions">
+                <button id="clear-completed-btn" class="btn secondary-btn">
+                    <i class="fas fa-trash"></i> Clear Completed
+                </button>
+                <button id="clear-all-btn" class="btn danger-btn">
+                    <i class="fas fa-trash-alt"></i> Clear All
+                </button>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Task Edit Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Task</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="edit-task-input">Task:</label>
+                    <input type="text" id="edit-task-input">
+                </div>
+                <div class="form-group">
+                    <label for="edit-task-priority">Priority:</label>
+                    <select id="edit-task-priority">
+                        <option value="low">Low Priority</option>
+                        <option value="medium">Medium Priority</option>
+                        <option value="high">High Priority</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-task-due-date">Due Date:</label>
+                    <input type="date" id="edit-task-due-date">
+                </div>
+                <div class="form-group">
+                    <label for="edit-task-category">Category:</label>
+                    <input type="text" id="edit-task-category">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="save-edit-btn" class="btn primary-btn">Save Changes</button>
+                <button id="cancel-edit-btn" class="btn secondary-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
